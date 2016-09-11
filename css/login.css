@@ -1,0 +1,325 @@
+body,div,dl,dt,ul,li{
+    margin: 0;
+    padding: 0;
+}
+.head{
+    width: 100%;
+    height: 40px;
+    line-height: 30px;
+    background: #6fb6fd;
+}
+.head .container{
+    height: 38px;
+    width: 990px;
+    margin: 0 auto;
+    /*border-bottom: 1px solid floralwhite;*/
+}
+.head .container-left{
+    float: left;
+}
+ul,ol{
+    list-style: none;
+}
+.head .container .container-left-item{
+    float: left;
+    padding: 0 7px;
+    line-height: 38px;
+    height: 38px;
+}
+.head .container a.on{
+    color: wheat;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Microsoft Yahei', SimHei, Verdana;
+}
+.head .container a{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Microsoft Yahei', SimHei, Verdana;
+}
+.head .container a:hover{
+    color: yellow;
+}
+.head .container-right{
+    float: right;
+}
+.head .container-right-item{
+    float: left;
+    padding: 0 7px;
+    line-height: 38px;
+    height: 38px;
+}
+.head .container-seperator{
+    float: left;
+    height: 12px;
+    width: 1px;
+    line-height: 14px;
+    margin: 14px 4px 8px;
+    background: #FFFFFF;
+    overflow: hidden;
+}
+.content{
+    width: 100%;
+    height: 650px;
+    background: url('image/login/drawpicture.jpg') center top;
+    /*background-size: 100% 100%;*/
+    /*border: 1px solid blue;*/
+}
+.content .content-body{
+    width: 990px;
+    height: 550px;
+    margin: 0 auto;
+    /*border: 1px solid black;*/
+
+}
+.content .content-body .content-left{
+    margin: 80px 40px;
+    /*position: relative;*/
+    float: left;
+    width: 400px;
+    height: 400px;
+    /*border: 1px solid red;*/
+}
+.content .content-body .content-right{
+    margin: 50px 40px;
+    /*position: relative;*/
+    float: right;
+    width: 400px;
+    height: 300px;
+    /*border: 1px solid red;*/
+}
+.content .content-body .content-right .body-login{
+    width: 286px;
+    height: auto;
+    margin: 27px 30px;
+    /*border: 1px solid blue;*/
+    position: relative;
+
+}
+.content .content-body .content-right .body-login .ui-nav{
+    background: rgba(0,0,0,.5);
+}
+.content .content-body .content-right .body-login .ui-nav li{
+    width: 50%;
+    float: left;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 15px 0 4px;
+    border-bottom: 2px solid #FFFFFF;
+    cursor: pointer;
+}
+.content .content-body .content-right .body-login .ui-nav .active{
+    color: #0AE;
+    border-bottom-color: #0AE;
+}
+.content .content-body .clear-float{
+    clear: both;
+}
+.content .content-body .body-login .login{
+    width: 220px;
+    padding: 0 31px 0 33px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #a7a7a7;
+}
+.content .content-body .body-login .login-modern{
+    border: 1px solid transparent;
+    background: rgba(0,0,0,.5);
+}
+.content .content-body .body-login img{
+    width: 180px;
+    height: 180px;
+    margin: 10px 16px 0px;
+
+}
+.content .content-body .body-login .img-des{
+    text-align: center;
+    color: #FFFFFF;
+}
+.content .content-body .body-login .img-des a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.content .content-body .body-login .img-des a:hover{
+    color: #00AAEE;
+}
+#J-login-code{
+    /*display: none;*/
+}
+
+.content .content-body .body-login .form-head{
+    margin-top: 10px;
+    height: 160px;
+    width: 220px;
+}
+.content .content-body .body-login .form-head p{
+    /*display: block;*/
+    /*width: 40px;*/
+    height: 40px;
+    background: #cccccc;
+    position: relative;
+    float: left;
+    margin: 20px auto 5px;
+}
+
+
+.content .content-body .body-login a:visited{
+    color: blue;
+}
+
+
+.content .content-body .body-login .form-foot{
+    padding-bottom: 28px;
+    width: 220px;
+    height: 80px;
+    position: relative;
+}
+.content .content-body .body-login .form-foot .ui-button{
+    display: block;
+    text-align: center;
+    background: #0AE;
+    width: 212px;
+    height: 40px;
+    color: #FFFFFF;
+    font-size: 20px;
+    border: 0;
+    border-radius: 4px;
+}
+.content .content-body .body-login .form-foot .ui-form-other{
+    height: 18px;
+    line-height: 1px;
+    background: none;
+    padding-top: 0;
+    width: 210px;
+    /*position: relative;*/
+}
+
+.content .content-body .body-login .form-foot .register{
+    float: right;
+    font-size: 12px;
+    color: #00AAEE;
+    text-decoration: none;
+}
+#J-login-form{
+    /*display: none;*/
+}
+
+
+.content .content-body .body-login p img{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin: 6px 5px;
+    position: relative;
+}
+.content .content-body .body-login .put{
+    position: relative;
+    float: right;
+    height: 35px;
+}
+.ui-form{
+    font-size: 12px;
+    line-height: 1.5;
+    position: relative;
+    zoom: 1;
+}
+.content .content-foot{
+    position: relative;
+    width: 100%;
+    height: 80px;
+    color: #FFFFFF;
+    /*border: 1px solid red;*/
+}
+.content .content-foot .content-foot-container{
+    width: 990px;
+    margin: 0 auto;
+    /*border: 1px solid green;*/
+
+}
+.content .content-foot .content-foot-link{
+    text-align: center;
+    line-height: 24px;
+
+}
+.content .content-foot a{
+    color: green;
+    text-decoration: none;
+
+}
+.content .content-foot .copyright{
+    text-align: center;
+    line-height: 24px;
+    color: green;
+}
+
+
+/**/
+.content-body .content-left .container{
+    width: 400px;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    /*border: 3px solid #333333;*/
+}
+.content-body .content-left .pic{
+    width: 2800px;
+    height: 320px;
+    position: absolute;
+    z-index: 1;
+}
+.content-body .content-left .pic img{
+    width: 400px;
+    height: 320px;
+    float: left;
+}
+.content-body .content-left .buttons{
+    position: absolute;
+    height: 10px;
+    width: 200px;
+    bottom: 20px;
+    left: 180px;
+    z-index: 2;
+}
+.content-body .content-left .buttons span{
+    float: left;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background: #333;
+    margin-right: 5px;
+}
+.content-body .content-left .buttons .on{
+    background: orangered;
+}
+.content-body .content-left .arrow{
+    display: none;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 39px;
+    top: 140px;
+    color: #fff;
+    z-index: 2;
+    cursor: pointer;
+    background-color: RGBA(0,0,0,.3);
+    text-decoration: none;
+}
+.content-body .content-left .arrow:hover{
+    background-color: RGBA(0,0,0,.7);
+}
+.content-body .content-left .container:hover .arrow{
+    display: block;
+}
+#prev{
+    left: 10px;
+}
+#next{
+    right: 10px;
+}
