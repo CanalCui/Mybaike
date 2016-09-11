@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>剪刀石头布</title>
+    <style>
+        body{
+            background: url("image/game/光影.jpg");
+        }
+        div{
+            width: 300px;
+            height: 200px;
+            background: #d8d8de;
+            border: 2px solid #136ec2;
+            margin: 20px auto;
+            padding-left: 30px;
+        }
+        div#first{
+            height: 50px;
+            text-align: center;
+            color: green;
+            font-family: 'Microsoft Yahei', SimHei, Verdana;
+            font-size: 18px;
+            /*line-height: 50px;*/
+        }
+        div#computer{
+            width: 300px;
+            height: 100px;
+            background: #d8d8de;
+            border: 2px solid #136ec2;
+            margin: 20px auto;
+            padding-left: 30px;
+
+        }
+        div#cu{
+            font-weight: bold;
+            font-size: 30px;
+            height: 40px;
+            color: red;
+        }
+        div#la{
+            border: none;
+            background: none;
+            display: none;
+
+        }
+        span{
+            color: red;
+            font-weight: bold;
+        }
+        #again{
+            margin: 10px 90px;
+        }
+    </style>
+    <script>
+        var se = null,time=20,you=0;
+        var arr = new Array('石头','布','剪子');
+        function again(){
+            document.getElementById('st').disabled =false;
+            document.getElementById('mb').disabled =false;
+            document.getElementById('jz').disabled =false;
+            document.getElementById('la').style.display ='none';
+            document.getElementById('you').innerHTML = '';
+            document.getElementById('cu').innerHTML = '';
+            document.getElementById('pc').innerHTML = '';
+            document.getElementById('you').innerHTML = '请选择';
+        }
+        function s(n){
+           if(n==1){
+               return '石头';
+           }else if(n==2){
+               return '布';
+           }else{
+               return '剪子';
+           }
+        }
+        function changespan(n) {
+            you = n;
+            document.getElementById('you').innerHTML=s(n);//写入你选择的选项
+            document.getElementById('st').disabled=true;//一次选择之后剩余的全部不可选
+            document.getElementById('mb').disabled=true;
+            document.getElementById('jz').disabled=true;
+            document.getElementById('cu').innerHTML = '等待结果...';//结果最后在此显示
+            se = setInterval('compute()',50);//每50毫秒，调用computer()
+        }
+        function compute(){
+           if(time>0){
+               //出现闪动效果
+               document.getElementById('pc').innerHTML = arr[time%3];
+               time--;//当20减到0后跳出，并产生一个值
+           }else{
+               clearInterval(se);//清除每隔50秒调用此函数
+               se = null;
+               time = 20;
+               result();//执行result函数，产生结果，替换Time--最后的结果
+           }
+        }
+       var pc;
+       function result(){
+           pc=Math.floor(Math.random() * 3 + 1);//电脑随机产生一个值
+           document.getElementById('pc').innerHTML=s(pc);//得到这个值，显示出来
+           play();//进入判定胜负函数
+       }
+       function play(){
+           if(pc==you){
+               document.getElementById('cu').innerHTML='平局';
+               document.getElementById('la').style.display = 'block';
+               return;
+           }
+           if(pc-you==1){
+               document.getElementById('cu').innerHTML='电脑赢';
+           }else{
+               if(pc-you==-2){
+                   document.getElementById('cu').innerHTML='电脑赢';
+               }else{
+                   document.getElementById('cu').innerHTML='你赢';
+               }
+           }
+           document.getElementById('la').style.display = 'block';
+       }
+    </script>
+</head>
+<body>
+    <div id="first">
+        <p>剪刀石头布<span></span></p>
+    </div>
+    <div class="style1">
+        <p>你出什么? <span id="you">请选择?</span>
+        </p>
+        <p><input id="st" onclick="changespan(1)" type="button" value="石头"><br /></p>
+        <p><input id="mb" onclick="changespan(2)" type="button" value="布"><br /></p>
+        <p><input id="jz" onclick="changespan(3)" type="button" value="剪子"><br /></p>
+    </div>
+    <div id="computer">
+        <p>电脑出?</p>
+        <span id="pc"></span>
+    </div>
+    <div id="cu"></div>
+    <div id="la">
+        <button id="again" onclick="again()">再来一次</button>
+    </div>
+</body>
+</html>
