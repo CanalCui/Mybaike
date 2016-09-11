@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="login.css" rel="stylesheet" type="text/css">
+    <title>login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script type="text/javascript">
+        function showHidden(obj){
+            var code=document.getElementById("saoma");
+            var text=document.getElementById("zhangmi");
+            if(obj=="J-login-code"){
+//                alert(obj);
+                document.getElementById("J-login-code").style.display="block";
+                document.getElementById("J-login-form").style.display="none";
+                code.style.color="#0AE";
+                code.style.borderBottomColor="#0AE";
+                text.style.color="white";
+                text.style.borderBottomColor="white";
+
+            }else{
+                document.getElementById("J-login-code").style.display="none";
+                document.getElementById("J-login-form").style.display="block";
+                code.style.color="white";
+                code.style.borderBottomColor="white";
+                text.style.color="#0AE";
+                text.style.borderBottomColor="#0AE";
+            }
+        }
+        function verifyAddress(emailForm) {
+            var email = emailForm.email.value;
+            var password=emailForm.password.value;
+            var pattern1 =/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+            var pattern2=/^([a-zA-Z0-9])/;
+            flag1 = pattern1.test(email);
+            flag2 = pattern2.test(password);
+            if(flag1&&flag2) {
+                alert("账号密码格式正确");
+                return true;
+            }
+            else {
+                alert("账号或密码有误，请重新输入");
+                return false;
+            }
+        }
+
+//      轮播图
+        window.onload = function(){
+            var container = document.getElementById("container");
+            var list = document.getElementById("list");
+            var buttons = document.getElementById("buttons").getElementsByTagName("span");
+            var next = document.getElementById("next");
+            var prev = document.getElementById("prev");
+            var index = 1;
+            var antimate = false;//动画函数是否运行的检测
+            var timer;
+
+            function showButton(){
+                //浏览过的buttons颜色去除
+                for(var i = 0;i < buttons.length;i++){
+                    if(buttons[i].className =="on"){
+                        buttons[i].className = "";
+                        break;
+                    }
+                }
+                //buttons是一个数组，需通过下角标来找
+                buttons[index-1].className = "on";
+            }
+
+            function common(set){
+                antimate = true;
+                //parseint类型转换，list.style.left=-600px 转变为-600
+                var newLeft = parseInt(list.style.left)+set;
+
+                //以下为动画效果
+                var time = 300;//位移的总时间
+                var interval = 10;//位移间隔时间
+                // 求每一次的位移量 set/次数
+                var speed = set/(time/interval);
+
+                //位移之前的判断
+                function move(){
+                    //向左移动或向右移动
+                    if((speed < 0 && parseInt(list.style.left) > newLeft)||
+                            (speed > 0 && parseInt(list.style.left) < newLeft)){
+                        list.style.left = parseInt(list.style.left)+speed+"px";
+                        //自己调用自己，函数的递归
+                        setTimeout(move,interval);
+                    }else{
+
+                        list.style.left = newLeft+"px";
+                        if(newLeft > -400){
+                            list.style.left = -2000+"px";
+                        }
+                        if(newLeft < -2000){
+                            list.style.left = -400+"px";
+                        }
+                        antimate = false;//当位移已结束，结束动画
+                    }
+                }
+                move();
+            }
+            function play(){
+                timer = setInterval(function(){
+                    next.onclick();
+                },3000);
+            }
+            function stop(){
+                //清除定时器
+                clearInterval(timer);
+            }
+            next.onclick = function(){
+                //判断是否超出了buttons的范围
+                if(index == 5){
+                    index = 1;
+                }else{
+                    index +=1;//每次点击+1，保证与图片对应
+                }
+                showButton();
+                //！antimate为假
+                if(!antimate){
+                    common(-400);
+                }
+            }
+            prev.onclick = function(){
+                //判断是否超出了buttons的范围
+                if(index == 1){
+                    index = 5;
+                }else{
+                    index -=1;//每次点击-1，保证与图片对应
+                }
+                showButton();
+                if(!antimate){
+                    common(400);
+                }
+            }
+            //给每一个按钮加上onclick事件
+            for(var i = 0;i < buttons.length;i++){
+                buttons[i].onclick = function(){
+                    if(this.className == "on"){
+                        return;
+                    }
+                    //通过.getAttribute()获取自定义属性，并求出buttons对应的序号
+                    var myIndex = parseInt(this.getAttribute("index"));//进而转换成数字用于计算
+                    //求出偏移量
+                    var offset = -400*(myIndex-index);
+                    //传进common函数进行求值
+                    if(!antimate){
+                        common(offset);
+                    }
+                    //将index重新赋值
+                    index = myIndex;
+                    //调用showButton（）使对应的按钮亮起来
+                    showButton();
+                }
+            }
+            container.onmouseover = stop;
+            container.onmouseout = play;
+            //默认状态下自动执行play
+            play();
+
+        }
+    </script>
+</head>
+<body>
+<div class="head">
+    <div class="container">
+        <ul class="container-left">
+            <li class="container-left-item">
+                <a href="http://baike.baidu.com/" class="on" target="_blank">百度百科</a>
+            </li>
+        </ul>
+        <ul class="container-right">
+            <li class="container-right-item">
+                <a href="https://www.baidu.com/" target="_blank">首页</a>
+            </li>
+            <li class="container-seperator"></li>
+            <li class="container-right-item">
+                <a href="http://www.baidu.com" target="_blank">服务大厅</a>
+            </li>
+            <li class="container-seperator"></li>
+            <li class="container-right-item">
+                <a href="http://www.baidu.com" target="_blank">建议</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <div class="content-body">
+        <div class="content-left">
+            <!--<img src="image/login/天大女孩.jpg" width="400" height="320">-->
+
+            <div class="container" id="container">
+                <div class="pic" id="list" style="left: -400px;">
+                    <img src="image/login/保时捷.jpg"/>
+                    <img src="image/login/玛莎拉蒂.jpg"/>
+                    <img src="image/login/法拉利.jpg"/>
+                    <img src="image/login/林肯.jpg"/>
+                    <img src="image/login/特斯拉.jpg"/>
+                    <img src="image/login/保时捷.jpg"/>
+                    <img src="image/login/玛莎拉蒂.jpg"/>
+                </div>
+                <div class="buttons" id="buttons">
+                    <span index="1" class="on"></span>
+                    <span index="2"></span>
+                    <span index="3"></span>
+                    <span index="4"></span>
+                    <span index="5"></span>
+                </div>
+                <a href="javascript:;" class="arrow" id="prev">&lt;</a>
+                <a href="javascript:;" class="arrow" id="next">&gt;</a>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="body-login">
+                <ul class="ui-nav" id="J-loginMethod-tabs">
+                    <li id="saoma" onclick="showHidden('J-login-code')">扫码登录</li>
+                    <li class="active" id="zhangmi" onclick="showHidden('J-login-form')">帐密登录</li>
+                    <br class="clear-float">
+                </ul>
+                <div class="login login-modern" id="J-login-code" style="display:none;">
+                    <div class="bar-code">
+                        <img src="image/login/cuiguanqu.png">
+                        <div class="img-des">
+                            <p>请扫码登录</p>
+                            <p><a href="http://www.baidu.com">使用帮助</a>&nbsp;|
+                                <a href="http://www.baidu.com">下载手机App</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="login login-modern" id="J-login-form" style="display:block;">
+                    <form action="index.html" method="post" name="emailForm" onsubmit="return verifyAddress(this)">
+                        <div class="form-head">
+                            <p><img src="image/login/账号.png"><input class="put" name="email" type="text" placeholder="邮箱/手机号/会员名">
+                            </p>
+                            <p><img src="image/login/密码.png"><input class="put" name="password" type="password" placeholder="密码">
+                            </p>
+                            <p style="font-size: 14px;float: right; margin-top: 0;right: 10px;background: none;">
+                                <a  style="text-decoration: none;color: white;" href="https://www.baidu.com/" target="_blank">
+                                    忘记登录密码?</a>
+                            </p>
+                        </div>
+                        <div class="form-foot">
+                            <input type="submit" value="登录" class="ui-button">
+                            <p class="ui-form-other">
+                                <a style="text-decoration: none;color: white;font-size: 14px;float: left;left: 20px;"
+                                   href="https://www.baidu.com/" target="_blank">会员登录</a>
+                                <a class="register" href="register.html" target="_blank">免费注册</a>
+                            </p>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="content-foot">
+        <div class="content-foot-container">
+            <p class="content-foot-link">
+                <a href="https://www.baidu.com/" target="_blank">关于百度</a>|
+                <a href="https://www.baidu.com/" target="_blank">诚征英才</a>|
+                <a href="https://www.baidu.com/" target="_blank">联系我们</a>|
+                <a href="https://www.baidu.com/" target="_blank">About Baidu</a>
+            </p>
+            <div class="copyright">
+                崔冠渠&copy;版权所有 2004-2016
+                <a href="https://www.baidu.com/" target="_blank">ICP证：京B2-20081201</a>
+            </div>
+         </div>
+    </div>
+</div>
+</body>
+</html>
