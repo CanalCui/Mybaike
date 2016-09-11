@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Starry sky</title>
+    <style type="text/css">
+        #myCanvas{
+            margin: 0 auto;
+            display: block;
+            padding: 10px;
+            /*background: -webkit-linear-gradient(top, #000, #00BFFF 100% );*/
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas">
+    您的浏览器不支持 HTML5 canvas 标签。
+</canvas>
+<script type="text/javascript">
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        window.setInterval(sky,500);
+        function sky(){
+            //定义画布的宽和高
+            canvas.width = 800;
+            canvas.height = 600;
+
+            //画两个渐变的同心圆，半径分别为0,300
+            var liner = context.createRadialGradient(400,1000,0,400,1000,800);
+            //设置渐变色
+            liner.addColorStop(0.25,"#00BFFF");
+            liner.addColorStop(0.5,"cyan");//蓝绿色
+            liner.addColorStop(0.68,"yellow");
+            liner.addColorStop(0.75,"orange");
+            liner.addColorStop(1.0,"#00BFFF");
+
+            //应用渐变色
+            context.fillStyle = liner;
+            context.fillRect(0,0,800,600);//绘制背景矩形
+
+            for(var i = 0; i < 50; i++){
+                var a = Math.random()*5+3;//定义一个随机半径
+                var x = Math.random()*canvas.width;
+                var y = Math.random()*canvas.height-200;
+                var c = Math.random()*360;
+                drawStar(context,a/2.5,a,x,y,c);
+//                context.clearRect(0,0,800,600);
+            }
+        }
+    }
+    //封装一个五边形函数，cxt绘图的上下文环境； r,R 代表内外圆的半径；x, y分别代表偏移量；rotate代表旋转角度
+    function drawStar(cxt,r,R,x,y,rot){
+        cxt.beginPath();
+        for (var i = 0; i < 5; i++) {
+            //得到大圆上的各个点
+            cxt.lineTo(Math.cos((18 + i * 72-rot) / 180 * Math.PI) * R + x,
+                    -Math.sin((18 + i * 72-rot) / 180 * Math.PI) * R + y); //-rot为设置顺时针旋转
+            //得到小圆上的各个点,大圆小圆半径比例为5:2时接近国旗五角星
+            cxt.lineTo(Math.cos((54 + i * 72-rot) / 180 * Math.PI) * r + x,
+                    -Math.sin((54 + i * 72-rot) / 180 * Math.PI) * r + y);
+        }
+        cxt.closePath();
+        cxt.fillStyle = "yellow";//填充色
+//      cxt.strokeStyle="yellow";//边框的颜色
+
+        cxt.fill();//填充
+//      cxt.stroke();//描边
+    }
+</script>
+
+</body>
+</html>
